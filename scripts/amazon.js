@@ -1,27 +1,3 @@
-const products = [
-  {
-    id: 1,
-    name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
-    image: "images/products/athletic-cotton-socks-6-pairs.jpg",
-    rating: { stars: 4.5, count: 87 },
-    priceCents: 1090,
-  },
-  {
-    id: 2,
-    name: "Intermediate Size Basketball",
-    image: "images/products/intermediate-composite-basketball.jpg",
-    rating: { stars: 4, count: 127 },
-    priceCents: 2095,
-  },
-  {
-    id: 3,
-    name: "Adult Sports Watch with Heart Rate Monitor",
-    image: "images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg",
-    rating: { stars: 4.5, count: 65 },
-    priceCents: 799,
-  },
-];
-
 let productHTML = "";
 products.forEach((product) => {
   productHTML += `
