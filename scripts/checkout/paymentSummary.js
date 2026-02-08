@@ -8,9 +8,14 @@ export function renderPaymentSummary() {
   let shippingCents = 0;
   cart.forEach((cartItem) => {
     const product = getProduct(cartItem.id);
-    productsCents += product.priceCents * cartItem.quantity;
+    if (product) {
+      productsCents += product.priceCents * cartItem.quantity;
+    }
 
-    shippingCents += getDeliveryOption(cartItem.deliveryOptionId).priceCents;
+    const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
+    if (deliveryOption) {
+      shippingCents += deliveryOption.priceCents;
+    }
   });
   const totalBeforeTaxCents = productsCents + shippingCents;
   const taxCents = Math.round(totalBeforeTaxCents * 0.1);
@@ -42,6 +47,10 @@ export function renderPaymentSummary() {
           </div>
 
   `;
-  document.querySelector(".payment-summary-title").innerHTML =
-    paymentSummaryHTML;
+  const paymentSummaryContainer = document.querySelector(
+    ".js-payment-summary-rows",
+  );
+  if (paymentSummaryContainer) {
+    paymentSummaryContainer.innerHTML = paymentSummaryHTML;
+  }
 }
