@@ -4,10 +4,12 @@ export let cart = localStorage.getItem("cart")
       {
         id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
         quantity: 2,
+        deleveryOptionId: "1",
       },
       {
         id: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
         quantity: 1,
+        deleveryOptionId: "2",
       },
     ];
 
@@ -29,6 +31,7 @@ export function addToCart(productId) {
     cart.push({
       id: productId,
       quantity: 1,
+      deleveryOptionId: "1",
     });
   }
   saveToLocalStorage();
