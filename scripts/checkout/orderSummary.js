@@ -1,8 +1,11 @@
 import { cart, removeFromCart, updateDeliveryOption } from "../../data/cart.js";
-import { products } from "../../data/products.js";
+import { products, getProduct } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
-import { deliveryOptions } from "../../data/deliveryOptions.js";
+import {
+  deliveryOptions,
+  getDeliveryOption,
+} from "../../data/deliveryOptions.js";
 
 function deliveryOptionHTML(matchingProductId, cartItem) {
   let deliveryOptionsHTML = "";
@@ -46,24 +49,14 @@ export function renderOrderSummary() {
   cart.forEach((cartItem, index) => {
     const productId = cartItem.id;
 
-    let matchingItem;
-    products.forEach((product) => {
-      if (product.id === productId) {
-        matchingItem = product;
-      }
-    });
+    const matchingItem = getProduct(productId);
 
     if (!matchingItem) {
       return;
     }
 
     const deliveryOptionId = cartItem.deliveryOptionId;
-    let deliveryOption;
-    deliveryOptions.forEach((option) => {
-      if (option.id === deliveryOptionId) {
-        deliveryOption = option;
-      }
-    });
+    let deliveryOption = getDeliveryOption(deliveryOptionId);
 
     // Fallback to first delivery option if not found
     if (!deliveryOption) {
@@ -106,6 +99,7 @@ export function renderOrderSummary() {
                   Choose a delivery option:
               </div>
               ${deliveryOptionHTML(matchingItem.id, cartItem)}
+          </div>
           </div>
       </div>`;
   });

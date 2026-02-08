@@ -1,4 +1,4 @@
 export function formatCurrency(priceInCents) {
-  const amount = priceInCents / 100;
+  const amount = Math.round(priceInCents) / 100;
   return `$${amount.toFixed(2)}`;
 }
