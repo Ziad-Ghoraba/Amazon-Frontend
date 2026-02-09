@@ -38,11 +38,15 @@ export function addToCart(productId) {
 }
 
 export function removeFromCart(productId) {
-  for (let i = cart.length - 1; i >= 0; i--) {
-    if (cart[i].id === productId) {
-      cart.splice(i, 1);
+  const newCart = [];
+
+  cart.forEach((cartItem) => {
+    if (cartItem.id !== productId) {
+      newCart.push(cartItem);
     }
-  }
+  });
+
+  cart = newCart;
   saveToLocalStorage();
 }
 
