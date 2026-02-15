@@ -9,17 +9,17 @@ class Cart {
     this.cartItems = localStorage.getItem(this.#localStorageKey)
       ? JSON.parse(localStorage.getItem(this.#localStorageKey))
       : [
-          {
-            id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-            quantity: 2,
-            deliveryOptionId: "1",
-          },
-          {
-            id: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
-            quantity: 1,
-            deliveryOptionId: "2",
-          },
-        ];
+        {
+          productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+          quantity: 2,
+          deliveryOptionId: "1",
+        },
+        {
+          productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
+          quantity: 1,
+          deliveryOptionId: "2",
+        },
+      ];
   }
 
   saveToLocalStorage() {
@@ -29,7 +29,7 @@ class Cart {
   addToCart(productId) {
     let matchingItem;
     this.cartItems.forEach((cartItem) => {
-      if (cartItem.id === productId) {
+      if (cartItem.productId === productId) {
         matchingItem = cartItem;
       }
     });
@@ -38,7 +38,7 @@ class Cart {
       matchingItem.quantity += 1;
     } else {
       this.cartItems.push({
-        id: productId,
+        productId: productId,
         quantity: 1,
         deliveryOptionId: "1",
       });
@@ -47,7 +47,7 @@ class Cart {
   }
   removeFromCart(productId) {
     for (let i = this.cartItems.length - 1; i >= 0; i--) {
-      if (this.cartItems[i].id === productId) {
+      if (this.cartItems[i].productId === productId) {
         this.cartItems.splice(i, 1);
       }
     }
@@ -56,7 +56,7 @@ class Cart {
   updateDeliveryOption(productId, deliveryOptionId) {
     let matchingItem;
     this.cartItems.forEach((cartItem) => {
-      if (cartItem.id === productId) {
+      if (cartItem.productId === productId) {
         matchingItem = cartItem;
       }
     });

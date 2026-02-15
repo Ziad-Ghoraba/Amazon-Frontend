@@ -18,7 +18,7 @@ function deliveryOptionHTML(matchingProductId, cartItem) {
 
     const isChecked = cart.some((cartItem) => {
       return (
-        cartItem.id === matchingProductId &&
+        cartItem.productId === matchingProductId &&
         cartItem.deliveryOptionId === option.id
       );
     });
@@ -48,7 +48,7 @@ function deliveryOptionHTML(matchingProductId, cartItem) {
 export function renderOrderSummary() {
   let cartItemsHTML = "";
   cart.forEach((cartItem, index) => {
-    const productId = cartItem.id;
+    const productId = cartItem.productId;
 
     const matchingItem = getProduct(productId);
 
